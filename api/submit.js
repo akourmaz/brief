@@ -100,7 +100,17 @@ export default async function handler(req, res) {
     });
     if (!put.ok) {
       const detail = await put.text();
-      throw new Error(`contents PUT: HTTP ${put.status} ${detail.slice(0, 200)}`);
+      console.error(`GitHub отклонил запись: HTTP ${put.status} ${detail.slice(0, 300)}`);
+      console.error('PAYLOAD', JSON.stringify(record));
+      // разные причины лечатся по-разному, поэтому различаем их в ответе
+      const reason = {
+        401: 'bad_token',      // токен недействителен или отозван
+        403: 'no_permission',  // нет права Contents: Read and write
+        404: 'repo_not_found', // токен не видит этот репозиторий
+        409: 'conflict',       // ветки не существует
+        422: 'bad_request',    // файл уже есть либо ветка указана неверно
+      }[put.status] || 'save_failed';
+      return res.status(502).json({ error: reason, status: put.status, repo: `${owner}/${repo}`, branch });
     }
 
     return res.status(200).json({ ok: true, answered });
@@ -108,6 +118,6 @@ export default async function handler(req, res) {
     console.error('Не удалось сохранить бриф в репозиторий:', e.message);
     // ответы иначе потеряны — дублируем в логи, откуда их можно достать вручную
     console.error('PAYLOAD', JSON.stringify(record));
-    return res.status(502).json({ error: 'save_failed' });
+    return res.status(502).json({ error: 'save_failed', detail: e.message.slice(0, 120) });
   }
 }
