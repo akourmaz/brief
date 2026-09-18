@@ -1,0 +1,7 @@
+{
+  "name": "brief-inbox",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Бриф этапа 1: единый инбокс для Facebook, Instagram и Telegram"
+}
