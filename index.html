@@ -295,7 +295,7 @@
         <h3>Что будет дальше</h3>
         <ol>
           <li>Разберём ответы и уточним то, что осталось непонятным — коротким списком, не новым брифом.</li>
-          <li>Подберём инструмент под ваши каналы и объём, покажем, как будет выглядеть рабочее место менеджера.</li>
+          <li>Подберём инструменты под ваши каналы и объём, покажем, какие варианты реализации вашей задачи есть.</li>
           <li>Дадим план запуска со сроками и стоимостью — дальше решаете вы.</li>
         </ol>
       </div>
@@ -448,12 +448,96 @@ function toast(msg) {
   toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
 }
 
+/** Оформленная копия ответов: читается человеком, печатается в PDF,
+ *  а данные лежат внутри же в блоке application/json — для обработки. */
+function buildDocument() {
+  const answered = countAnswered(state.answers);
+  const now = new Date();
+  const data = { ...payload(), answeredCount: answered, total: ALL_QS.length, savedAt: now.toISOString() };
+
+  let n = 0;
+  const sections = SECTIONS.map((s, si) => {
+    const items = s.qs.map(q => {
+      n++;
+      const a = state.answers[q.id] || { c: [], t: '' };
+      const picked = a.c && a.c.length
+        ? `<div class="picked">${a.c.map(o => `<span>${esc(o)}</span>`).join('')}</div>` : '';
+      const written = a.t && a.t.trim()
+        ? `<p class="answer">${esc(a.t.trim()).replace(/\n/g, '<br>')}</p>` : '';
+      const blank = !picked && !written ? '<p class="blank">Без ответа</p>' : '';
+      return `<article class="item"><div class="num">${String(n).padStart(2, '0')}</div>`
+        + `<div class="body"><h3>${esc(q.t)}</h3>${picked}${written}${blank}</div></article>`;
+    }).join('');
+    return `<section class="sec"><div class="sec-head"><span class="sec-n">Раздел ${si + 1} из ${SECTIONS.length}</span>`
+      + `<h2>${esc(s.title)}</h2></div>${items}</section>`;
+  }).join('');
+
+  // экранируем "<", иначе текст ответа может закрыть тег script
+  const embedded = JSON.stringify(data).replace(/</g, '\\u003c');
+
+  return `<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Бриф · Этап 1 · ${now.toLocaleDateString('ru-RU')}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+  :root { --bg:#F4F6F8; --surface:#fff; --surface-2:#EEF2F5; --ink:#16202E; --ink-2:#3A4656;
+    --muted:#6A7684; --border:#DCE2E9; --accent:#0E7C6B; --accent-soft:#E1F2EE; --accent-ink:#0A5C50; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); line-height:1.55; font-size:16px;
+    font-family:"Golos Text","Segoe UI",Roboto,Arial,sans-serif; -webkit-font-smoothing:antialiased; }
+  .page { max-width:780px; margin:0 auto; padding:48px 24px 64px; }
+  header { border-bottom:2px solid var(--accent); padding-bottom:24px; margin-bottom:8px; }
+  .eyebrow { font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+  h1 { font-family:"Lora",Georgia,serif; font-weight:600; font-size:32px; line-height:1.2; margin:10px 0 16px; }
+  .facts { display:flex; gap:24px; flex-wrap:wrap; font-size:14px; color:var(--muted); }
+  .facts b { color:var(--ink); font-weight:600; font-variant-numeric:tabular-nums; }
+  .sec { margin-top:40px; }
+  .sec-head { margin-bottom:16px; }
+  .sec-n { font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+  h2 { font-family:"Lora",Georgia,serif; font-weight:600; font-size:23px; margin:4px 0 0; }
+  .item { display:flex; gap:14px; background:var(--surface); border:1px solid var(--border);
+    border-radius:14px; padding:18px 20px; margin-bottom:10px; break-inside:avoid; }
+  .num { font-family:"JetBrains Mono",Consolas,monospace; font-size:13px; color:var(--muted); padding-top:3px; }
+  .body { min-width:0; flex:1; }
+  h3 { font-size:16px; font-weight:600; margin:0; line-height:1.4; }
+  .picked { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+  .picked span { background:var(--accent-soft); color:var(--accent-ink); border-radius:999px;
+    padding:5px 12px; font-size:14px; font-weight:500; }
+  .answer { margin:10px 0 0; color:var(--ink-2); white-space:pre-wrap; overflow-wrap:anywhere; }
+  .blank { margin:8px 0 0; color:var(--muted); font-size:14px; font-style:italic; }
+  footer { margin-top:44px; padding-top:20px; border-top:1px solid var(--border); font-size:13px; color:var(--muted); }
+  @media print {
+    body { background:#fff; }
+    .page { max-width:none; padding:0; }
+    .item { border-color:#D5DBE2; }
+  }
+  @media (max-width:520px) { .page { padding:32px 16px 48px; } h1 { font-size:26px; } .item { padding:16px; } }
+</style></head>
+<body><div class="page">
+<header>
+  <div class="eyebrow">Единый инбокс для Facebook, Instagram и Telegram</div>
+  <h1>Бриф · Этап 1</h1>
+  <div class="facts">
+    <span>Заполнен: <b>${now.toLocaleString('ru-RU')}</b></span>
+    <span>Отвечено: <b>${answered} из ${ALL_QS.length}</b></span>
+  </div>
+</header>
+${sections}
+<footer>Копия ответов, сохранённая со страницы брифа. Данные для обработки — в блоке application/json ниже.</footer>
+</div>
+<script type="application/json" id="brief-data">${embedded}<\/script>
+</body></html>`;
+}
+
 function download() {
-  const data = { ...payload(), answeredCount: countAnswered(state.answers), total: ALL_QS.length, savedAt: new Date().toISOString() };
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const blob = new Blob([buildDocument()], { type: 'text/html;charset=utf-8' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url; a.download = `brief-${new Date().toISOString().slice(0, 16).replace(/[:T]/g, '-')}.json`;
+  a.href = url;
+  a.download = `brief-${new Date().toISOString().slice(0, 16).replace(/[:T]/g, '-')}.html`;
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
   toast('Файл сохранён');
