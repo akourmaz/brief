@@ -98,7 +98,11 @@
   .hero .meta b { color: var(--ink); font-weight: 700; }
 
   .grid { display: grid; grid-template-columns: minmax(0, 270px) minmax(0, 1fr); gap: 36px; padding-top: 40px; }
-  .side { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 76px); align-self: start; }
+  .side {
+    position: sticky; top: calc(env(safe-area-inset-top, 0px) + 76px); align-self: start;
+    max-height: calc(100dvh - 110px); overflow-y: auto; scrollbar-width: none;
+  }
+  .side::-webkit-scrollbar { display: none; }
   .side .eyebrow { margin-bottom: 12px; display: block; }
   .toc { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
   .toc li { display: block; }
@@ -116,7 +120,7 @@
   .toc a:hover { background: var(--surface-2); color: var(--ink); }
   .toc a.active { color: var(--ink); background: var(--accent-soft); border-color: rgba(16,185,129,.20); }
   .toc .n { flex: none; font-family: var(--mono); font-size: 11px; line-height: 1.2; color: var(--muted); white-space: nowrap; }
-  .toc .n.done { color: var(--accent); }
+  .toc .n.full { color: var(--accent); }
   .side .note { margin-top: 22px; font-size: 12px; color: var(--muted); line-height: 1.6; }
 
   .main { min-width: 0; }
@@ -510,7 +514,7 @@ function refresh() {
     const d = s.qs.filter(q => isAnswered(q.id)).length;
     const el = $('toc-n-' + s.id);
     el.textContent = d + '/' + s.qs.length;
-    el.classList.toggle('done', d === s.qs.length);
+    el.classList.toggle('full', d === s.qs.length);
   });
   $('footHint').textContent = done === ALL_QS.length
     ? 'Все вопросы заполнены. Можно отправлять.'
