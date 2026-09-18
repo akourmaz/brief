@@ -64,6 +64,13 @@
   }
   .topbar-in { max-width: 1080px; margin: 0 auto; padding: 12px 20px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
   .brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .brand-link {
+    display: inline-flex; align-items: center; gap: 10px; min-width: 0;
+    color: inherit; text-decoration: none; border-radius: 999px; padding: 9px 12px; margin: -9px -12px;
+    transition: color .2s, background .2s;
+  }
+  .brand-link:hover { color: var(--accent); background: var(--surface-2); }
+  .brand-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .brand .mark { width: 20px; height: 20px; color: var(--accent); flex: none; filter: drop-shadow(0 0 10px rgba(52,211,153,.5)); }
   .brand .name { font-weight: 800; font-size: 15px; letter-spacing: -.02em; text-transform: uppercase; }
   .brand .sep { width: 1px; height: 18px; background: var(--border); flex: none; }
@@ -90,18 +97,25 @@
   .hero .meta span { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; }
   .hero .meta b { color: var(--ink); font-weight: 700; }
 
-  .grid { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; padding-top: 40px; }
-  .side { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 76px); align-self: start; }
+  .grid { display: grid; grid-template-columns: minmax(0, 240px) minmax(0, 1fr); gap: 40px; padding-top: 40px; }
+  .side {
+    position: sticky; top: calc(env(safe-area-inset-top, 0px) + 76px); align-self: start;
+    max-height: calc(100dvh - 110px); overflow-y: auto; scrollbar-width: none;
+  }
+  .side::-webkit-scrollbar { display: none; }
   .side .eyebrow { margin-bottom: 12px; display: block; }
   .toc { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+  .toc li { display: block; }
   .toc a {
-    display: flex; justify-content: space-between; align-items: center; gap: 10px;
-    padding: 10px 12px; border-radius: 12px; color: var(--ink-2); text-decoration: none; font-size: 14px; font-weight: 500;
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;
+    padding: 10px 12px; border-radius: 12px; color: var(--ink-2); text-decoration: none;
+    font-size: 14px; line-height: 1.35; font-weight: 500;
     border: 1px solid transparent; transition: background .2s, color .2s, border-color .2s;
   }
+  .toc a > span:first-child { min-width: 0; overflow-wrap: anywhere; }
   .toc a:hover { background: var(--surface-2); color: var(--ink); }
   .toc a.active { color: var(--ink); background: var(--accent-soft); border-color: rgba(16,185,129,.20); }
-  .toc .n { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  .toc .n { font-family: var(--mono); font-size: 11px; line-height: 1.35; color: var(--muted); flex: none; padding-top: .18em; }
   .toc .n.done { color: var(--accent); }
   .side .note { margin-top: 22px; font-size: 12px; color: var(--muted); line-height: 1.6; }
 
@@ -225,7 +239,7 @@
   .reveal.active { opacity: 1; transform: translateY(0); }
 
   @media (max-width: 860px) {
-    #app { padding-bottom: 190px; }
+    #app { padding-bottom: 120px; }
     .grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
     .side { position: static; min-width: 0; }
     .side .note { display: none; }
@@ -241,13 +255,14 @@
     .brand .name { font-size: 12px; }
     .topbar-in { gap: 12px; flex-wrap: nowrap; }
     .progress { flex: 1 1 90px; min-width: 90px; }
-    .actions-in { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .actions-in { display: flex; flex-wrap: nowrap; gap: 8px; }
     .btn { padding: 0 14px; font-size: 14px; }
-    .actions .hint { grid-column: 1 / -1; }
-    .btn.primary { grid-column: 1 / -1; order: 1; }
+    .actions .hint { display: none; }
+    .btn.primary { flex: 1 1 auto; min-width: 0; order: 1; }
+    #btnDownload, #btnShow { flex: none; width: 44px; padding: 0; }
+    #btnDownload .btn-label, #btnShow .btn-label { display: none; }
     #btnDownload { order: 2; }
-    #btnShow { order: 3; }
-    .toast { bottom: calc(160px + env(safe-area-inset-bottom, 0px)); }
+    #btnShow { order: 3; border-color: var(--border); background: var(--surface-2); color: var(--ink-2); }
     .done { padding: 56px 0 40px; }
     .glow-a, .glow-b { width: 90vw; height: 90vw; }
   }
@@ -265,8 +280,10 @@
 <div class="topbar" id="topbar">
   <div class="topbar-in">
     <div class="brand">
-      <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
-      <span class="name">The&nbsp;Kurmaz&nbsp;Method</span>
+      <a class="brand-link" href="https://t.me/akourmaz" target="_blank" rel="noopener" title="Написать в Telegram">
+        <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+        <span class="name">The&nbsp;Kurmaz&nbsp;Method</span>
+      </a>
       <span class="sep" aria-hidden="true"></span>
       <span class="doc">Бриф · Этап 1</span>
     </div>
@@ -320,10 +337,13 @@
   <div class="actions">
     <div class="actions-in">
       <div class="hint" id="footHint">Заполните, что знаете. Пустые вопросы обсудим на созвоне.</div>
-      <button class="btn quiet" id="btnShow" type="button">Показать текст</button>
-      <button class="btn" id="btnDownload" type="button">
+      <button class="btn quiet" id="btnShow" type="button" aria-label="Показать текст" title="Показать текст">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3"/><path d="M12 4v16"/><path d="M9 20h6"/></svg>
+        <span class="btn-label">Показать текст</span>
+      </button>
+      <button class="btn" id="btnDownload" type="button" aria-label="Скачать файлом" title="Скачать файлом">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
-        Скачать файлом
+        <span class="btn-label">Скачать файлом</span>
       </button>
       <button class="btn primary" id="btnSend" type="button">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
