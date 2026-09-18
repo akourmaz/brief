@@ -73,7 +73,8 @@ export default async function handler(req, res) {
 
   try {
     const stamp = receivedAt.slice(0, 16).replace(/[:T]/g, '-'); // 2026-09-18-15-30
-    const path = `${dir}/${stamp}-${slug(clean.who)}.md`;
+    // имя в брифе больше не спрашиваем, поэтому оно попадает в имя файла только если пришло
+    const path = clean.who ? `${dir}/${stamp}-${slug(clean.who)}.md` : `${dir}/${stamp}.md`;
     const content = [
       renderText(clean),
       '',
@@ -92,7 +93,7 @@ export default async function handler(req, res) {
       method: 'PUT',
       headers: ghHeaders(token),
       body: JSON.stringify({
-        message: `Бриф: ${clean.who || 'без имени'} (${answered}/${ALL_QS.length}) [skip ci]`,
+        message: `Бриф ${stamp} (${answered}/${ALL_QS.length}) [skip ci]`,
         content: Buffer.from(content, 'utf8').toString('base64'),
         branch,
       }),

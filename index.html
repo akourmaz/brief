@@ -80,18 +80,9 @@
 
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px 130px; }
   .hero { padding: 48px 0 32px; border-bottom: 1px solid var(--border); }
-  .hero h1 { font-size: clamp(30px, 4vw, 42px); line-height: 1.15; margin: 10px 0 14px; }
-  .hero p.lead { font-size: 18px; color: var(--ink-2); max-width: 62ch; margin: 0 0 22px; }
+  .hero h1 { font-size: clamp(30px, 4vw, 42px); line-height: 1.15; margin: 10px 0 20px; }
   .hero .meta { display: flex; gap: 24px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
   .hero .meta b { color: var(--ink); font-weight: 600; }
-
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 28px 0 0; }
-  .step { padding: 14px 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
-  .step.current { border-color: var(--accent); background: var(--accent-soft); }
-  .step .k { font-family: var(--mono); font-size: 12px; color: var(--muted); }
-  .step.current .k { color: var(--accent-ink); }
-  .step .t { font-weight: 600; margin-top: 4px; }
-  .step .d { font-size: 13px; color: var(--muted); margin-top: 2px; }
 
   .grid { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; padding-top: 36px; }
   .side { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 72px); align-self: start; }
@@ -127,12 +118,6 @@
   .q-hint { margin: 6px 0 0 36px; font-size: 14px; color: var(--muted); max-width: 60ch; }
   .q-body { margin: 12px 0 0 36px; display: flex; flex-direction: column; gap: 10px; }
 
-  .who { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px 20px; margin-bottom: 28px; }
-  .who h3 { font-size: 18px; margin-bottom: 4px; }
-  .who p { margin: 0 0 14px; font-size: 14px; color: var(--muted); }
-  .who .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .field label { display: block; font-size: 13px; font-weight: 500; color: var(--ink-2); margin-bottom: 5px; }
-
   .chips { display: flex; flex-wrap: wrap; gap: 8px; }
   .chip {
     border: 1px solid var(--border-strong); background: var(--surface); color: var(--ink-2);
@@ -146,15 +131,13 @@
   .chip svg { width: 14px; height: 14px; display: none; flex: none; }
   .chip[aria-pressed="true"] svg { display: block; }
 
-  textarea, input[type="text"] {
+  textarea {
     width: 100%; font: inherit; font-size: 16px; color: var(--ink); background: var(--surface-2);
     border: 1px solid transparent; border-radius: 10px; padding: 12px 14px;
-    line-height: 1.5; transition: background .15s, border-color .15s;
+    line-height: 1.5; min-height: 48px; resize: none; transition: background .15s, border-color .15s;
   }
-  textarea { min-height: 48px; resize: none; }
-  input[type="text"] { min-height: 48px; }
-  textarea::placeholder, input::placeholder { color: var(--muted); }
-  textarea:focus, input[type="text"]:focus { outline: none; background: var(--surface); border-color: var(--accent); }
+  textarea::placeholder { color: var(--muted); }
+  textarea:focus { outline: none; background: var(--surface); border-color: var(--accent); }
   label.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
   .actions {
@@ -228,8 +211,6 @@
     .toc::-webkit-scrollbar { display: none; }
     .toc a { white-space: nowrap; border-left: 0; border-bottom: 2px solid transparent; border-radius: 8px 8px 0 0; }
     .toc a.active { border-bottom-color: var(--accent); }
-    .steps { grid-template-columns: 1fr; }
-    .who .row { grid-template-columns: 1fr; }
     .q { padding: 16px 16px 18px; }
     .q.answered { padding-left: 14px; }
     .q-hint, .q-body { margin-left: 0; }
@@ -267,16 +248,9 @@
     <header class="hero">
       <div class="eyebrow">Единый инбокс для Facebook, Instagram и Telegram</div>
       <h1>19 вопросов, чтобы собрать этап 1 правильно</h1>
-      <p class="lead">Это не анкета ради анкеты. Каждый ответ здесь напрямую определяет выбор инструмента, схему подключения каналов и то, как будет выглядеть карточка клиента. Заполнять можно частями и вместе с командой — всё сохраняется в браузере.</p>
       <div class="meta">
         <span>Время: <b>15–20 минут</b></span>
-        <span>Отвечает: <b>владелец + менеджер</b></span>
         <span>Не знаете точно — <b>пишите, как есть</b></span>
-      </div>
-      <div class="steps" aria-label="Как мы работаем">
-        <div class="step current"><div class="k">01 · сейчас</div><div class="t">Бриф</div><div class="d">Понимаем цель, каналы, людей и объём</div></div>
-        <div class="step"><div class="k">02</div><div class="t">Решение и план</div><div class="d">Инструмент, схема подключения, сроки, стоимость</div></div>
-        <div class="step"><div class="k">03</div><div class="t">Запуск</div><div class="d">Подключаем каналы, переносим контакты, обучаем</div></div>
       </div>
     </header>
 
@@ -288,20 +262,6 @@
       </aside>
 
       <main class="main">
-        <div class="who">
-          <h3>Кто заполняет</h3>
-          <p>Чтобы мы знали, с кем обсуждать ответы.</p>
-          <div class="row">
-            <div class="field">
-              <label for="who">Имя и роль</label>
-              <input type="text" id="who" autocomplete="name" placeholder="Например: Дмитрий, владелец">
-            </div>
-            <div class="field">
-              <label for="contact">Как с вами связаться</label>
-              <input type="text" id="contact" autocomplete="email" placeholder="Telegram, телефон или почта">
-            </div>
-          </div>
-        </div>
         <div id="main"></div>
       </main>
     </div>
@@ -368,10 +328,10 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;',
 const ICON_CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
 const $ = id => document.getElementById(id);
 
-let state = { who: '', contact: '', answers: {} };
+let state = { answers: {} };
 try {
   const raw = JSON.parse(localStorage.getItem(KEY) || 'null');
-  if (raw && typeof raw === 'object') state = { who: raw.who || '', contact: raw.contact || '', answers: raw.answers || {} };
+  if (raw && typeof raw === 'object' && raw.answers) state = { answers: raw.answers };
 } catch (e) { /* приватный режим или заблокированные данные сайта — работаем без сохранения */ }
 
 const get = id => (state.answers[id] ||= { c: [], t: '' });
@@ -454,11 +414,6 @@ function build() {
   });
   main.addEventListener('change', e => { if (e.target.tagName === 'TEXTAREA') flashSaved(); });
   main.querySelectorAll('textarea').forEach(autosize);
-
-  $('who').value = state.who;
-  $('contact').value = state.contact;
-  $('who').addEventListener('input', e => { state.who = e.target.value; save(false); });
-  $('contact').addEventListener('input', e => { state.contact = e.target.value; save(false); });
 }
 function autosize(ta) { ta.style.height = 'auto'; ta.style.height = Math.max(48, ta.scrollHeight + 2) + 'px'; }
 
@@ -483,7 +438,7 @@ function refresh() {
            : 'Заполните, что знаете. Пустые вопросы обсудим на созвоне.';
 }
 
-const payload = () => ({ who: state.who.trim(), contact: state.contact.trim(), answers: state.answers });
+const payload = () => ({ answers: state.answers });
 
 let toastTimer = null;
 function toast(msg) {
@@ -498,8 +453,7 @@ function download() {
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  const slug = (state.who.trim() || 'brief').replace(/[^\wа-яА-ЯёЁ-]+/g, '-').slice(0, 40);
-  a.href = url; a.download = `brief-${slug}-${new Date().toISOString().slice(0, 10)}.json`;
+  a.href = url; a.download = `brief-${new Date().toISOString().slice(0, 16).replace(/[:T]/g, '-')}.json`;
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
   toast('Файл сохранён');
@@ -522,12 +476,6 @@ async function copyText() {
 async function send() {
   const btn = $('btnSend');
   if (countAnswered(state.answers) === 0) { toast('Ответьте хотя бы на один вопрос'); return; }
-  if (!state.who.trim()) {
-    $('who').focus();
-    $('who').scrollIntoView({ block: 'center', behavior: 'smooth' });
-    toast('Подскажите, кто заполняет');
-    return;
-  }
   btn.disabled = true;
   const original = btn.innerHTML;
   btn.innerHTML = '<span class="spinner"></span>Отправляем…';
