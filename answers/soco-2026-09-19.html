@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ответы SOCO на бриф</title>
+<meta name="description" content="Бриф этапа 1 «Единый инбокс»: 19 вопросов и ответы клиента SOCO.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#10b981">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap">
+<style>
+  /* Фирменные токены Kurmaz SEO — те же, что на странице брифа */
+  :root {
+    --bg: #050505; --bg-2: #0A0A0A; --cell: #090B0A; --cell-hover: #0C1411;
+    --surface: rgba(255,255,255,.02); --surface-2: rgba(255,255,255,.05);
+    --ink: rgba(255,255,255,.92); --answer: rgba(255,255,255,.80); --ink-2: rgba(255,255,255,.64); --muted: rgba(255,255,255,.46);
+    --border: rgba(255,255,255,.10); --border-soft: rgba(255,255,255,.06);
+    --accent: #10B981; --accent-2: #34D399; --accent-ink: #6EE7B7;
+    --accent-grad: linear-gradient(135deg, #34D399 0%, #10B981 100%);
+    --accent-soft: rgba(16,185,129,.10); --accent-line: rgba(16,185,129,.28); --accent-ring: rgba(16,185,129,.22);
+    --on-accent: #050505;
+    --danger: #EF4444; --danger-soft: rgba(239,68,68,.08); --danger-line: rgba(239,68,68,.28);
+    --glow: 0 0 30px rgba(52,211,153,.30);
+    --display: "Manrope", "Segoe UI", Roboto, Arial, sans-serif;
+    --body: "Manrope", "Segoe UI", Roboto, Arial, sans-serif;
+    --mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+    --bar-h: 49px; /* уточняется скриптом по фактической высоте шапки */
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--body); font-size: 16px; line-height: 1.6; font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: rgba(16,185,129,.30); color: #fff; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 800; margin: 0; letter-spacing: -.03em; text-wrap: balance; }
+  a { color: var(--accent-ink); text-decoration: underline; text-decoration-color: var(--accent-line); text-underline-offset: 3px; transition: color .2s, text-decoration-color .2s; }
+  a:hover { color: var(--accent-2); text-decoration-color: currentColor; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  .accent { color: var(--accent); }
+  .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+  .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* Изумрудные пятна подсветки — как на главной сайта */
+  .glow-a, .glow-b { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; }
+  .glow-a { top: -18%; left: -12%; width: 46vw; height: 46vw; background: rgba(16,185,129,.10); filter: blur(120px); }
+  .glow-b { bottom: -22%; right: -14%; width: 52vw; height: 52vw; background: rgba(16,185,129,.05); filter: blur(150px); }
+
+  .topbar {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+    background: rgba(5,5,5,.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .topbar-in { max-width: 1080px; margin: 0 auto; padding: 12px 20px; display: flex; align-items: center; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .brand-link {
+    display: inline-flex; align-items: center; gap: 10px; color: inherit; text-decoration: none;
+    border-radius: 999px; padding: 9px 12px; margin: -9px -12px; transition: color .2s, background .2s;
+  }
+  .brand-link:hover { color: var(--accent); background: var(--surface-2); }
+  .brand .mark { width: 20px; height: 20px; color: var(--accent); flex: none; filter: drop-shadow(0 0 10px rgba(52,211,153,.5)); }
+  .brand .name { font-weight: 800; font-size: 15px; letter-spacing: -.02em; text-transform: uppercase; white-space: nowrap; }
+  .brand .sep { width: 1px; height: 18px; background: var(--border); flex: none; }
+  .brand .doc { font-size: 13px; color: var(--muted); white-space: nowrap; }
+  .progress { flex: 1 1 200px; display: flex; align-items: center; gap: 12px; min-width: 120px; margin-left: auto; max-width: 360px; }
+  .bar { flex: 1; height: 4px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+  .bar > span { display: block; height: 100%; background: var(--accent-grad); border-radius: 999px; box-shadow: 0 0 12px rgba(16,185,129,.6); }
+  .progress .count { font-family: var(--mono); font-size: 12px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+  .wrap { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; padding-inline: 20px; padding-bottom: 48px; }
+
+  .hero { padding-block: 52px 36px; border-bottom: 1px solid var(--border); }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; margin-bottom: 22px; max-width: 100%;
+    background: var(--accent-soft); border: 1px solid rgba(16,185,129,.20); border-radius: 999px;
+    color: var(--accent); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .18em; line-height: 1.4;
+  }
+  .badge svg { width: 14px; height: 14px; flex: none; }
+  .hero h1 { font-size: clamp(32px, 5.2vw, 56px); line-height: 1.05; margin-bottom: 18px; text-shadow: var(--glow); }
+  .lead { margin: 0 0 22px; color: var(--ink-2); font-size: 17px; max-width: 58ch; }
+  .meta { display: flex; gap: 10px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+  .meta span { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; }
+  .meta b { color: var(--ink); font-weight: 700; }
+
+  /* Коротко: одна панель, ячейки разделены сеткой в 1px */
+  .facts { margin-top: 32px; border: 1px solid var(--border); border-radius: 24px; overflow: hidden; background: var(--cell); }
+  .facts-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 16px 22px 14px; }
+  .facts-head .eyebrow { color: var(--accent); }
+  .facts-head p { margin: 0; font-size: 13px; color: var(--muted); }
+  .facts-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--border-soft); border-top: 1px solid var(--border-soft); }
+  .fact { display: flex; flex-direction: column; padding: 16px 22px 18px; background: var(--cell); color: inherit; text-decoration: none; transition: background .2s; }
+  .fact:hover { background: var(--cell-hover); color: inherit; }
+  .fact:focus-visible { outline-offset: -3px; border-radius: 0; }
+  .fact-top { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+  .fact .k { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+  .fact .ref { font-family: var(--mono); font-size: 11px; color: var(--accent); white-space: nowrap; opacity: .75; transition: opacity .2s; }
+  .fact:hover .ref { opacity: 1; }
+  .fact .v { margin-top: 8px; font-weight: 800; font-size: 22px; line-height: 1.2; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+  .fact .n { margin-top: 3px; font-size: 13px; color: var(--muted); line-height: 1.45; }
+  .channels { grid-column: 1 / -1; background: var(--cell); padding: 14px 22px 16px; display: flex; align-items: center; gap: 10px 18px; flex-wrap: wrap; }
+  .channels .k { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+  .channels ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .channels a {
+    display: inline-flex; align-items: baseline; gap: 8px; padding: 6px 14px; border-radius: 999px;
+    border: 1px solid var(--border); background: var(--surface-2); text-decoration: none; color: var(--ink); font-size: 14px;
+    transition: border-color .2s, background .2s;
+  }
+  .channels a:hover { border-color: var(--accent-line); background: var(--accent-soft); color: var(--ink); }
+  .channels a b { font-weight: 700; }
+  .channels a span { color: var(--ink-2); }
+
+  .grid { display: grid; grid-template-columns: minmax(0, 270px) minmax(0, 1fr); gap: 36px; padding-top: 40px; }
+  .side { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--bar-h) + 16px); align-self: start; }
+  .side .eyebrow { margin-bottom: 12px; display: block; }
+  .toc { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+  .toc a {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    height: 44px; padding: 0 12px; border-radius: 12px; border: 1px solid transparent;
+    color: var(--ink-2); text-decoration: none; font-size: 14px; line-height: 1.2; font-weight: 500;
+    transition: background .2s, color .2s, border-color .2s;
+  }
+  .toc .t { flex: 1 1 auto; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .toc a:hover { background: var(--surface-2); color: var(--ink); }
+  .toc a.active { color: var(--ink); background: var(--accent-soft); border-color: rgba(16,185,129,.20); }
+  .toc .n { flex: none; font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  .toc .n.full { color: var(--accent); }
+  .side .note { margin: 22px 0 0; font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+  .main { min-width: 0; }
+  section.block { margin-bottom: 48px; scroll-margin-top: calc(var(--bar-h) + 16px); }
+  .block-head { margin-bottom: 16px; display: flex; flex-direction: column; gap: 6px; }
+  .block-head .eyebrow { color: var(--accent); }
+  .block-head h2 { font-size: clamp(24px, 3vw, 32px); line-height: 1.15; }
+
+  .q {
+    background: var(--surface); border: 1px solid var(--border-soft); border-radius: 24px;
+    padding: 20px 22px 22px; margin-bottom: 12px; scroll-margin-top: calc(var(--bar-h) + 16px);
+    transition: border-color .3s, box-shadow .3s;
+  }
+  .q:hover { border-color: var(--accent-line); }
+  .q:target { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-ring), 0 0 40px rgba(16,185,129,.08); }
+  .q-head { display: flex; gap: 14px; align-items: baseline; }
+  .q-num { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--accent); min-width: 26px; text-decoration: none; font-variant-numeric: tabular-nums; }
+  .q-title { font-family: var(--body); font-weight: 700; font-size: 17px; line-height: 1.35; letter-spacing: -.01em; }
+  .q-hint { margin: 6px 0 0 40px; font-size: 14px; color: var(--muted); max-width: 62ch; }
+  .q-body { margin: 14px 0 0 40px; display: flex; flex-direction: column; gap: 14px; }
+
+  .opts { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .opt {
+    display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 999px;
+    font-size: 14px; line-height: 1.3; font-weight: 500; color: var(--muted); border: 1px dashed var(--border);
+  }
+  .opt.on { background: var(--accent-grad); border: 1px solid transparent; color: var(--on-accent); font-weight: 700; box-shadow: 0 4px 20px rgba(16,185,129,.22); }
+  .opt svg { width: 14px; height: 14px; flex: none; }
+
+  .flow { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 8px; }
+  .step {
+    position: relative; display: inline-flex; align-items: center; gap: 8px; padding: 5px 14px 5px 5px; border-radius: 999px;
+    font-size: 14px; line-height: 1.3; font-weight: 600; color: var(--muted); border: 1px dashed var(--border);
+  }
+  .step.on { color: var(--ink); background: var(--accent-soft); border: 1px solid var(--accent-line); }
+  .step .k {
+    width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; flex: none;
+    font-family: var(--mono); font-size: 11px; font-weight: 700; background: var(--surface-2); color: var(--muted);
+  }
+  .step.on .k { background: var(--accent-grad); color: var(--on-accent); }
+  .exit { margin: 0; display: flex; align-items: center; gap: 10px 12px; flex-wrap: wrap; }
+  .exit-l { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+  .step.out.on { background: var(--danger-soft); border-color: var(--danger-line); }
+  .step.out.on .k { background: var(--danger); color: #fff; font-family: var(--body); font-size: 15px; }
+
+  .answer .label { font-family: var(--mono); font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 4px; }
+  .answer p { margin: 0; color: var(--answer); max-width: 68ch; overflow-wrap: break-word; }
+  .answer p + p { margin-top: 10px; }
+  .blank { margin: 0; color: var(--muted); font-size: 14px; font-style: italic; }
+
+  .sign { position: relative; z-index: 1; border-top: 1px solid var(--border); }
+  .sign-in { max-width: 1080px; margin: 0 auto; padding: 22px 20px 26px; display: flex; align-items: center; gap: 8px 12px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
+  .sign-in svg { width: 14px; height: 14px; color: var(--accent); flex: none; }
+  .sign-in a { color: var(--ink-2); text-decoration: none; font-weight: 700; }
+  .sign-in a:hover { color: var(--accent); }
+  .sign-in .spacer { flex: 1 1 auto; }
+
+  @media (max-width: 860px) {
+    :root { --bar-h: 45px; }
+    .grid { grid-template-columns: minmax(0, 1fr); gap: 20px; padding-top: 28px; }
+    .side { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--bar-h)); z-index: 10; margin-inline: -20px; padding: 10px 20px; background: rgba(5,5,5,.95); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-soft); }
+    .side .eyebrow, .side .note { display: none; }
+    .toc { flex-direction: row; overflow-x: auto; gap: 6px; scrollbar-width: none; }
+    .toc::-webkit-scrollbar { display: none; }
+    .toc li { flex: 0 0 auto; }
+    .toc a { height: 38px; border-color: var(--border-soft); }
+    .toc .t { overflow: visible; text-overflow: clip; }
+    section.block, .q { scroll-margin-top: calc(var(--bar-h) + 76px); }
+    .hero { padding-block: 40px 28px; }
+    .badge { font-size: 10px; letter-spacing: .12em; border-radius: 20px; }
+    .facts-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .q { padding: 18px 18px 20px; border-radius: 20px; }
+    .q-hint, .q-body { margin-left: 0; }
+    .brand .doc, .brand .sep { display: none; }
+    .brand .name { font-size: 12px; }
+    .topbar-in { gap: 12px; }
+    .progress { flex: 1 1 90px; min-width: 90px; }
+    .glow-a, .glow-b { width: 90vw; height: 90vw; }
+  }
+  @media (max-width: 420px) {
+    .facts-grid { grid-template-columns: minmax(0, 1fr); }
+    .fact, .channels, .facts-head { padding-inline: 18px; }
+    .flow { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .flow .step:not(:last-child)::after { content: ""; position: absolute; left: 17px; bottom: -13px; width: 1px; height: 12px; background: var(--accent-line); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="glow-a" aria-hidden="true"></div>
+<div class="glow-b" aria-hidden="true"></div>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <div class="brand">
+      <a class="brand-link" href="https://t.me/akourmaz" target="_blank" rel="noopener" title="Написать в Telegram">
+        <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+        <span class="name">The&nbsp;Kurmaz&nbsp;Method</span>
+      </a>
+      <span class="sep" aria-hidden="true"></span>
+      <span class="doc">Бриф · Этап 1 · Ответы</span>
+    </div>
+    <div class="progress" aria-label="Отвечено 19 из 19">
+      <div class="bar"><span style="width:100.00%"></span></div>
+      <span class="count">19 из 19</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>Единый инбокс · Facebook, Instagram, WhatsApp, Telegram</div>
+    <h1>Ответы на бриф <span class="accent">этапа&nbsp;1</span></h1>
+    <p class="lead">Все 19 вопросов брифа и ответы клиента по разделам. Текст ответов приведён дословно, как его написал клиент.</p>
+    <div class="meta">
+      <span>Клиент: <b>SOCO, Грузия</b></span>
+      <span>Заполнен: <b>19 сентября 2026 г.</b></span>
+      <span>Отвечено: <b>19 из 19</b></span>
+    </div>
+
+    <div class="facts" aria-labelledby="facts-h">
+      <div class="facts-head">
+        <span class="eyebrow" id="facts-h">Коротко</span>
+        <p>Главные цифры из ответов. Нажмите на ячейку, чтобы открыть вопрос.</p>
+      </div>
+      <div class="facts-grid">
+          <a class="fact" href="#q3">
+            <span class="fact-top"><span class="k">Срок запуска</span><span class="ref">вопрос 3</span></span>
+            <span class="v">Жёсткого нет</span>
+            <span class="n">хотят как можно скорее</span>
+          </a>
+          <a class="fact" href="#q10">
+            <span class="fact-top"><span class="k">Обращений в день</span><span class="ref">вопрос 10</span></span>
+            <span class="v">до 25</span>
+            <span class="n">в основном Facebook Messenger</span>
+          </a>
+          <a class="fact" href="#q11">
+            <span class="fact-top"><span class="k">Клиентов в базе</span><span class="ref">вопрос 11</span></span>
+            <span class="v">≈ 500</span>
+            <span class="n">в Excel, остальные не учтены</span>
+          </a>
+          <a class="fact" href="#q12">
+            <span class="fact-top"><span class="k">С клиентами работают</span><span class="ref">вопрос 12</span></span>
+            <span class="v">3 человека</span>
+            <span class="n">позже ещё 1–2 менеджера</span>
+          </a>
+          <a class="fact" href="#q13">
+            <span class="fact-top"><span class="k">Менеджер работает</span><span class="ref">вопрос 13</span></span>
+            <span class="v">С телефона</span>
+            <span class="n">нужен и компьютер</span>
+          </a>
+          <a class="fact" href="#q14">
+            <span class="fact-top"><span class="k">Часы работы</span><span class="ref">вопрос 14</span></span>
+            <span class="v">10:00–23:00</span>
+            <span class="n">иногда позже и ночью</span>
+          </a>
+        <div class="channels">
+          <span class="k">Каналы</span>
+          <ul><li><a href="#q4"><b>Facebook</b><span>бизнес-страница</span></a></li><li><a href="#q5"><b>Instagram</b><span>бизнес-аккаунт</span></a></li><li><a href="#q6"><b>Telegram</b><span>личный аккаунт</span></a></li><li><a href="#q7"><b>WhatsApp</b><span>Business</span></a></li></ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="grid">
+    <aside class="side" aria-label="Разделы">
+      <span class="eyebrow">Разделы</span>
+      <ul class="toc"><li><a href="#s1" data-sec="s1" title="Зачем и что болит"><span class="t">Зачем и что болит</span><span class="n full">3/3</span></a></li><li><a href="#s2" data-sec="s2" title="Каналы"><span class="t">Каналы</span><span class="n full">6/6</span></a></li><li><a href="#s3" data-sec="s3" title="Люди и объём"><span class="t">Люди и объём</span><span class="n full">6/6</span></a></li><li><a href="#s4" data-sec="s4" title="Карточка клиента и диалоги"><span class="t">Карточка клиента и диалоги</span><span class="n full">4/4</span></a></li></ul>
+      <p class="note">Ответы не редактировали: формулировки и опечатки клиента сохранены.</p>
+    </aside>
+
+    <main class="main">
+        <section class="block" id="s1" aria-labelledby="s1-h">
+          <div class="block-head">
+            <span class="eyebrow">Раздел 1 из 4</span>
+            <h2 id="s1-h">Зачем и что болит</h2>
+          </div>
+          <article class="q" id="q1">
+            <div class="q-head"><a class="q-num" href="#q1" aria-label="Вопрос 1">01</a><h3 class="q-title">Что сейчас теряется чаще всего?</h3></div>
+            
+            <div class="q-body"><ul class="opts" aria-label="Варианты ответа"><li class="opt">Обращения без ответа<span class="vh"> — не выбрано</span></li><li class="opt on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Забытые клиенты<span class="vh"> — выбрано</span></li><li class="opt on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Не помним, что обсуждали<span class="vh"> — выбрано</span></li><li class="opt on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Не видно работы менеджера<span class="vh"> — выбрано</span></li></ul><div class="answer"><div class="label">Ответ клиента</div><p>диалоговое окно одно в buisness suite ( туда из инсты и фейсбука приходя обращения ), а также в вотсапе приходят в телеге. Например пообщались с клиентом, продали ему, или договорилсь потом связаться, новы диалоги приходят эти все диалоги  вниз уходят сверху новые появляются, и все в куче короче, и путанница происходит, в таблицу вроде вношу данные но это просто как для архива, что когда срм появится можно внести данные.</p></div></div>
+          </article>
+          <article class="q" id="q2">
+            <div class="q-head"><a class="q-num" href="#q2" aria-label="Вопрос 2">02</a><h3 class="q-title">Как поймём через месяц после запуска, что получилось?</h3></div>
+            <p class="q-hint">Что должно измениться для менеджера и для вас как владельца.</p>
+            <div class="q-body"><div class="answer"><div class="label">Ответ клиента</div><p>Все сообщения из разных каналов собираются в одном месте. За каждым клиентом закреплён ответственный менеджер и видно, на каком этапе находится общение. Важно, чтобы в рабочее время ни один новый клиент не ждал первого ответа больше часа. Менеджер видит всю историю переписки, задачи и напоминания и понимает, кому нужно ответить сейчас, а с кем связаться позже.Я со своей стороны вижу общую картину: сколько новых обращений, кому ещё не ответили, сколько клиентов сейчас в работе и где есть задержки. Чтобы данные все были сохранены ( может быть что-то еще дополнительно должно быть, но пока вот так вижу )</p></div></div>
+          </article>
+          <article class="q" id="q3">
+            <div class="q-head"><a class="q-num" href="#q3" aria-label="Вопрос 3">03</a><h3 class="q-title">Есть ли срок, к которому надо запуститься?</h3></div>
+            
+            <div class="q-body"><div class="answer"><div class="label">Ответ клиента</div><p>Жёсткого срока нет, но хотелось бы запуститься как можно скорее</p></div></div>
+          </article>
+        </section>
+        <section class="block" id="s2" aria-labelledby="s2-h">
+          <div class="block-head">
+            <span class="eyebrow">Раздел 2 из 4</span>
+            <h2 id="s2-h">Каналы</h2>
+          </div>
+          <article class="q" id="q4">
+            <div class="q-head"><a class="q-num" href="#q4" aria-label="Вопрос 4">04</a><h3 class="q-title">Facebook: через что ведётся общение?</h3></div>
+            
+            <div class="q-body"><ul class="opts" aria-label="Варианты ответа"><li class="opt on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Бизнес-страница<span class="vh"> — выбрано</span></li><li class="opt">Личный профиль<span class="vh"> — не выбрано</span></li><li class="opt">Не используем<span class="vh"> — не выбрано</span></li></ul><div class="answer"><div class="label">Ответ клиента</div><p><a href="https://www.facebook.com/soco.geo" target="_blank" rel="noopener">facebook.com/soco.geo</a></p></div></div>
+          </article>
+          <article class="q" id="q5">
+            <div class="q-head"><a class="q-num" href="#q5" aria-label="Вопрос 5">05</a><h3 class="q-title">Instagram: какой это аккаунт?</h3></div>
+            
+            <div class="q-body"><ul class="opts" aria-label="Варианты ответа"><li class="opt on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Бизнес-аккаунт<span class="vh"> — выбрано</span></li><li class="opt">Личный аккаунт<span class="vh"> — не выбрано</span></li><li class="opt">Не знаю<span class="vh"> — не выбрано</span></li></ul><div class="answer"><div class="label">Ответ клиента</div><p>Да инстаграм подключен к фейсбук. <a href="https://www.instagram.com/soco.ge" target="_blank" rel="noopener">instagram.com/soco.ge</a></p></div></div>
+          </article>
+          <article class="q" id="q6">
+            <div class="q-head"><a class="q-num" href="#q6" aria-label="Вопрос 6">06</a><h3 class="q-title">Telegram: куда пишут клиенты?</h3></div>
+            <p class="q-hint">Личный аккаунт человека, бот магазина или канал — это три разных способа подключения.</p>
+            <div class="q-body"><ul class="opts" aria-label="Варианты ответа"><li class="opt on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Личный аккаунт<span class="vh"> — выбрано</span></li><li class="opt">Бот<span class="vh"> — не выбрано</span></li><li class="opt">Канал / группа<span class="vh"> — не выбрано</span></li><li class="opt">Не используем<span class="vh"> — не выбрано</span></li></ul><div class="answer"><div class="label">Ответ клиента</div><p>мой личный аккаунт второй в тг на грузинском номере зареган, сделал его под рабочий. бота нет <a href="https://t.me/SOCO_GE" target="_blank" rel="noopener">@SOCO_GE</a></p></div></div>
+          </article>
+          <article class="q" id="q7">
+            <div class="q-head"><a class="q-num" href="#q7" aria-label="Вопрос 7">07</a><h3 class="q-title">WhatsApp используется?</h3></div>
+            
+            <div class="q-body"><ul class="opts" aria-label="Варианты ответа"><li class="opt">Личный номер<span class="vh"> — не выбрано</span></li><li class="opt on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>WhatsApp Business<span class="vh"> — выбрано</span></li><li class="opt">Не используем<span class="vh"> — не выбрано</span></li></ul><div class="answer"><div class="label">Ответ клиента</div><p>Один номер, номер был зареган на меня, а симка была неактивна и номер пропал ( теперь на другом человеке левом зарега)  но аккаунт вотсап работает, смс на симку не сможем получать если какие-то смс с кодом потребуются. +995551558926</p></div></div>
+          </article>
+          <article class="q" id="q8">
+            <div class="q-head"><a class="q-num" href="#q8" aria-label="Вопрос 8">08</a><h3 class="q-title">Кто владеет аккаунтами и все ли доступы есть у вас?</h3></div>
+            <p class="q-hint">Кто заводил, на чью почту и телефон, кто сейчас администратор.</p>
+            <div class="q-body"><div class="answer"><div class="label">Ответ клиента</div><p>Единственное только с вотсапом момент есть,  а остальными аккаунтами  владею я . Инстаграм на свой номер регал, фейсбук на почту и номер партнера, телеграм на меня</p></div></div>
+          </article>
+          <article class="q" id="q9">
+            <div class="q-head"><a class="q-num" href="#q9" aria-label="Вопрос 9">09</a><h3 class="q-title">Есть ли ещё точки входа?</h3></div>
+            
+            <div class="q-body"><ul class="opts" aria-label="Варианты ответа"><li class="opt on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Комментарии под постами<span class="vh"> — выбрано</span></li><li class="opt on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Ответы на Stories<span class="vh"> — выбрано</span></li><li class="opt">Почта<span class="vh"> — не выбрано</span></li><li class="opt">Звонки<span class="vh"> — не выбрано</span></li><li class="opt">Сайт<span class="vh"> — не выбрано</span></li></ul><div class="answer"><div class="label">Ответ клиента</div><p>Ответы на сторис тоже понадобятся, в будущем, когда нарастим активность в соцсетях. Звонки точно нужны. Новому партнёру по продажам хотим купить отдельную SIM-карту, чтобы он общался с клиентами по телефону. Скорее всего, понадобится и IP-телефония, чтобы звонить прямо через CRM и сохранять историю звонков. Здесь пока не определились, как лучше всё организовать, хотелось бы услышать рекомендацию.Ещё интересно, можно ли через CRM принимать звонки из Facebook/Instagram или, наоборот, перезванивать клиентам оттуда.Сайт тоже будет, но немного позже.</p></div></div>
+          </article>
+        </section>
+        <section class="block" id="s3" aria-labelledby="s3-h">
+          <div class="block-head">
+            <span class="eyebrow">Раздел 3 из 4</span>
+            <h2 id="s3-h">Люди и объём</h2>
+          </div>
+          <article class="q" id="q10">
+            <div class="q-head"><a class="q-num" href="#q10" aria-label="Вопрос 10">10</a><h3 class="q-title">Сколько новых обращений в день или в месяц?</h3></div>
+            <p class="q-hint">Примерно, по ощущениям. Если по каналам различается — напишите.</p>
+            <div class="q-body"><div class="answer"><div class="label">Ответ клиента</div><p>Сейчас примерно до 25 обращений в день суммарно бывает и меньше от рекламы зависит. 21 на фейсбук написали 3 на инстаграм. По-разному бывает, когда рекламу стопим то бывает не пишут совсем. Планируем рост трафика, поэтому объём будет увеличиваться. Разбивки по каналам пока нет. в основном фейсбук мессенджер</p></div></div>
+          </article>
+          <article class="q" id="q11">
+            <div class="q-head"><a class="q-num" href="#q11" aria-label="Вопрос 11">11</a><h3 class="q-title">Сколько всего клиентов накопилось?</h3></div>
+            
+            <div class="q-body"><div class="answer"><div class="label">Ответ клиента</div><p>примерно 500, остальное все не учитывалось, много диалогов есть в фейсбук, кто-то просто обращался и не получил должно внимания, если их как-то реактировать, как-то поднять</p></div></div>
+          </article>
+          <article class="q" id="q12">
+            <div class="q-head"><a class="q-num" href="#q12" aria-label="Вопрос 12">12</a><h3 class="q-title">Кто будет работать в инбоксе сейчас и через год? Кто ещё будет смотреть?</h3></div>
+            
+            <div class="q-body"><div class="answer"><div class="label">Ответ клиента</div><p>Сейчас с клиентами работают три человека. менджер по продажам, и мы в двоем основатели.  В дальнейшем возможно добавление ещё одного-двух менеджеров. Мне как владельцу нужен доступ ко всем перепискам и результатам работы и также чтобы мог общаться с клиентами. Отдельный сотрудник занимается складом, фасовкой и отправкой: ему нужен доступ к необходимым данным заказа. В дальнейшем нужен доступ или выгрузки для бухгалтера. Права для каждой роли должны настраиваться отдельно. В будущем еще возможно будем на фулфилмент передавать упаковку и доставку</p></div></div>
+          </article>
+          <article class="q" id="q13">
+            <div class="q-head"><a class="q-num" href="#q13" aria-label="Вопрос 13">13</a><h3 class="q-title">Менеджер работает с телефона или с компьютера?</h3></div>
+            
+            <div class="q-body"><ul class="opts" aria-label="Варианты ответа"><li class="opt on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Телефон<span class="vh"> — выбрано</span></li><li class="opt">Компьютер<span class="vh"> — не выбрано</span></li><li class="opt">И то и другое<span class="vh"> — не выбрано</span></li></ul><div class="answer"><div class="label">Ответ клиента</div><p>Основное устройство менеджера телефон. При выборе системы хотелось бы предусмотреть удобную работу и с компьютера, и с телефона.</p></div></div>
+          </article>
+          <article class="q" id="q14">
+            <div class="q-head"><a class="q-num" href="#q14" aria-label="Вопрос 14">14</a><h3 class="q-title">Часы работы, и кто отвечает вне их?</h3></div>
+            
+            <div class="q-body"><div class="answer"><div class="label">Ответ клиента</div><p>10:00-23:00 - иногда общаемся и позже и ночью</p></div></div>
+          </article>
+          <article class="q" id="q15">
+            <div class="q-head"><a class="q-num" href="#q15" aria-label="Вопрос 15">15</a><h3 class="q-title">Есть ли технический человек, или всё должно работать в облаке без своего сервера?</h3></div>
+            
+            <div class="q-body"><ul class="opts" aria-label="Варианты ответа"><li class="opt">Есть свой технарь<span class="vh"> — не выбрано</span></li><li class="opt">Только облако<span class="vh"> — не выбрано</span></li><li class="opt on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Не знаю<span class="vh"> — выбрано</span></li></ul><div class="answer"><div class="label">Ответ клиента</div><p>технаря нету, облак пока тоже нет.</p></div></div>
+          </article>
+        </section>
+        <section class="block" id="s4" aria-labelledby="s4-h">
+          <div class="block-head">
+            <span class="eyebrow">Раздел 4 из 4</span>
+            <h2 id="s4-h">Карточка клиента и диалоги</h2>
+          </div>
+          <article class="q" id="q16">
+            <div class="q-head"><a class="q-num" href="#q16" aria-label="Вопрос 16">16</a><h3 class="q-title">Что должно быть в карточке клиента?</h3></div>
+            
+            <div class="q-body"><ul class="opts" aria-label="Варианты ответа"><li class="opt on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Имя<span class="vh"> — выбрано</span></li><li class="opt on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Телефон<span class="vh"> — выбрано</span></li><li class="opt on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Город / страна<span class="vh"> — выбрано</span></li><li class="opt on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Адрес доставки<span class="vh"> — выбрано</span></li><li class="opt on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Что покупал<span class="vh"> — выбрано</span></li><li class="opt on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Откуда пришёл<span class="vh"> — выбрано</span></li></ul><div class="answer"><div class="label">Ответ клиента</div><p>Имя, телефон и доступные контакты в мессенджерах, город и страна, адрес и способ доставки, источник обращения, история переписки и заказов, состав и сумма заказа, статус оплаты и выполнения, ответственный менеджер, заметки, задачи и дата следующего контакта. Клиенты находятся в Грузии. Менеджер должен иметь возможность подтверждать получение оплаты банковским переводом, с фиксацией того, кто и когда это сделал.</p></div></div>
+          </article>
+          <article class="q" id="q17">
+            <div class="q-head"><a class="q-num" href="#q17" aria-label="Вопрос 17">17</a><h3 class="q-title">Старая переписка: переносим или копим с нуля?</h3></div>
+            <p class="q-hint">Часть истории из соцсетей подтянуть можно, из личного Telegram — практически нет.</p>
+            <div class="q-body"><ul class="opts" aria-label="Варианты ответа"><li class="opt on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Переносим<span class="vh"> — выбрано</span></li><li class="opt">Копим с нуля<span class="vh"> — не выбрано</span></li><li class="opt">Не знаю<span class="vh"> — не выбрано</span></li></ul><div class="answer"><div class="label">Ответ клиента</div><p>В Excel сейчас около 500 контактов. В ней указаны основные данные по клиентам и заказам: имя, телефон, что покупали, сумма заказа, адрес доставки, и статус клиента/заказа. Ещё хотелось бы по возможности сохранить доступную историю переписки из Facebook и WhatsApp.<br>Также важно понять, можно ли объединять дублирующиеся контакты. Например, один и тот же клиент может писать с разных аккаунтов в Facebook или быть одновременно в Facebook и WhatsApp. В Telegram диалогов немного, но их тоже желательно учесть, если это возможно.</p></div></div>
+          </article>
+          <article class="q" id="q18">
+            <div class="q-head"><a class="q-num" href="#q18" aria-label="Вопрос 18">18</a><h3 class="q-title">Нужно ли писать клиентам первыми?</h3></div>
+            <p class="q-hint">Напомнить о повторном заказе, сообщить о поступлении, рассказать об акции.</p>
+            <div class="q-body"><ul class="opts" aria-label="Варианты ответа"><li class="opt on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Да, регулярно<span class="vh"> — выбрано</span></li><li class="opt">Иногда<span class="vh"> — не выбрано</span></li><li class="opt">Нет<span class="vh"> — не выбрано</span></li></ul><div class="answer"><div class="label">Ответ клиента</div><p>Нужна возможность вернуться к клиенту по текущему обращению или заказу и не забыть о следующем контакте. Напоминания о повторной покупке, сообщения о поступлениях и акциях</p></div></div>
+          </article>
+          <article class="q" id="q19">
+            <div class="q-head"><a class="q-num" href="#q19" aria-label="Вопрос 19">19</a><h3 class="q-title">Через какие этапы проходит клиент от первого сообщения до отправки?</h3></div>
+            <p class="q-hint">Нам нужен ваш реальный путь клиента — по нему менеджер будет видеть, кто на каком шаге застрял. Ниже наш обычный набор: отметьте подходящее, лишнее пропустите, недостающее допишите.</p>
+            <div class="q-body"><ol class="flow" aria-label="Этапы, которые отметил клиент"><li class="step on"><span class="k">1</span>Новый, ещё не ответили</li><li class="step on"><span class="k">2</span>Уточняем, что нужно</li><li class="step on"><span class="k">3</span>Назвали цену, ждём решения</li><li class="step on"><span class="k">4</span>Ждём оплату</li><li class="step on"><span class="k">5</span>Оплачен, собираем</li><li class="step on"><span class="k">6</span>Отправлен</li></ol><p class="exit"><span class="exit-l">Выход из воронки</span><span class="step out on"><span class="k" aria-hidden="true">×</span>Отказался</span></p><div class="answer"><div class="label">Ответ клиента</div><p>Клиент пишет из Facebook / WhatsApp / Telegram / Instagram или обращается после рекламы. Менеджер отвечает, уточняет запрос и для чего клиент хочет продукт, при необходимости задаёт дополнительные вопросы или созванивается. После этого рекомендуем подходящий продукт, отправляем цену и условия. Дальше клиент либо свяжется позже/перестаёт отвечать, либо подтверждает заказ. Если готов заказать - собираем данные: имя, телефон, адрес, способ доставки, состав заказа. Отправляем реквизиты и ждём оплату. После поступления оплаты подтверждаем клиенту и передаём заказ человеку, который отвечает за сборку и доставку. Заказ собирается и отправляется курьером / службой доставки / Яндекс.Доставкой. После отправки при необходимости сообщаем клиенту информацию по доставке. В дальнейшем клиент может вернуться с повторным заказом.</p><p>В принципе описал сам путь, если что-то нужно добавить и будут вопросы я могу подробнее рассказать или поотвечать на вопросы чтобы чтобы более точнее путь был)</p></div></div>
+          </article>
+        </section>
+    </main>
+  </div>
+</div>
+
+<footer class="sign">
+  <div class="sign-in">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+    <span>Бриф подготовлен <a href="https://seoagency.ge/" target="_blank" rel="noopener">The Kurmaz Method</a></span>
+    <span class="spacer"></span>
+    <span>Вопросы — <a href="https://t.me/akourmaz" target="_blank" rel="noopener">@akourmaz</a></span>
+  </div>
+</footer>
+
+<script>
+  document.documentElement.lang = 'ru';
+  const bar = document.querySelector('.topbar');
+  const setBar = () => document.documentElement.style.setProperty('--bar-h', bar.offsetHeight + 'px');
+  setBar();
+  if ('ResizeObserver' in window) new ResizeObserver(setBar).observe(bar);
+  const links = [...document.querySelectorAll('.toc a')];
+  const setActive = id => links.forEach(l => {
+    const on = l.dataset.sec === id;
+    l.classList.toggle('active', on);
+    if (on) l.setAttribute('aria-current', 'true'); else l.removeAttribute('aria-current');
+  });
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => { if (en.isIntersecting) setActive(en.target.id); });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  document.querySelectorAll('section.block').forEach(s => io.observe(s));
+  setActive('s1');
+</script>
+</body>
+</html>
